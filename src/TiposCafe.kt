@@ -1,0 +1,3 @@
+enum class TiposCafe {
+    CAPPUCCINO,DESCAFEINADO,CHOCOLATE
+}
