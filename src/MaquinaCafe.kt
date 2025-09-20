@@ -7,12 +7,15 @@ object MaquinaCafe {
                 if (tipo.precio <= monedas) {
                     println("Empezando a preparar cafe")
                     estadoActual = EstadosMaquinas.preparandoCafe
-                    println("Preparando ${tipo.tipo}")
-                    estadoActual = EstadosMaquinas.sirviendoCafe(tipo.tipo.name)
                     hacerCafe(tipo,monedas)
                 } else {
                     println("No tienes suficiente dinero")
                 }
+            }
+            is EstadosMaquinas.preparandoCafe -> {
+                println("Preparando ${tipo.tipo}")
+                estadoActual = EstadosMaquinas.sirviendoCafe(tipo.tipo.name)
+                hacerCafe(tipo,monedas)
             }
             is EstadosMaquinas.sirviendoCafe -> {
                 println("Sirviendo ${(estadoActual as EstadosMaquinas.sirviendoCafe).marca}")
@@ -20,12 +23,10 @@ object MaquinaCafe {
                     println("Abonando la vuelta ${tipo.precio-monedas}")
                 }
                 println("Cafe servido")
+                estadoActual = EstadosMaquinas.Idle
             }
             is EstadosMaquinas.fallo -> {
                 println("Fallo: ${(estadoActual as EstadosMaquinas.fallo).error}")
-            }
-            else -> {
-                println("Que mierda haces")
             }
         }
     }
