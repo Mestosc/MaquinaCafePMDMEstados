@@ -5,12 +5,18 @@
 ## 🚀 Clases del Proyecto
 
 Aquí tienes un resumen de las clases que hacen la magia posible:
+### Clases Necesarias 
+Son las clases necesarias para hacer las pruebas
+#### `Main.kt` ▶️
 
-### `MaquinaCafe.kt` 🤖
+El punto de entrada de la aplicación. Aquí es donde creamos un café y le pedimos a nuestra `MaquinaCafe` que se ponga a trabajar.
+Aqui hacemos pruebas con los posibles estados
+
+#### `MaquinaCafe.kt` 🤖
 
 Este es el cerebro de la operación. Se trata de un `object` (un Singleton) que representa nuestra máquina de café. Gestiona los diferentes estados por los que pasa la máquina para preparar un delicioso café.
 
-### `EstadosMaquinas.kt`🚦
+#### `EstadosMaquinas.kt`🚦
 
 Aquí es donde se definen los posibles estados de nuestra máquina. Usando una `sealed class`, nos aseguramos de que solo puedan existir los siguientes estados:
 
@@ -18,8 +24,10 @@ Aquí es donde se definen los posibles estados de nuestra máquina. Usando una `
 -   `preparandoCafe`: La máquina está en proceso de preparación. 👨‍🍳
 -   `sirviendoCafe`: ¡El café está listo y se está sirviendo! ☕
 -   `fallo`: Algo ha salido mal. 😱
-
-### `Cafe.kt` 📝
+### Clases extra
+Para hacer algo más complejo a futuro, si quieres hacer algo más complejo, aqui implemente más cosas, que el estado para hacer pruebas
+más complejas porque me apetecio
+#### `Cafe.kt` 📝
 
 Una `data class` muy simple que representa un café. Contiene propiedades como:
 
@@ -28,7 +36,7 @@ Una `data class` muy simple que representa un café. Contiene propiedades como:
 -   `tipo`: El tipo de café (definido en `TiposCafe`).
 -   `canitdadIngredientes`: La cantidad de ingredientes que le quedan al cafe.
 
-### `TiposCafe.kt` 📋
+#### `TiposCafe.kt` 📋
 
 Un `enum` que define los tipos de café que nuestra máquina puede preparar. Por ahora, tenemos:
 
@@ -36,10 +44,9 @@ Un `enum` que define los tipos de café que nuestra máquina puede preparar. Por
 -   `DESCAFEINADO`
 -   `CHOCOLATE`
 
-### `Main.kt` ▶️
 
-El punto de entrada de la aplicación. Aquí es donde creamos un café y le pedimos a nuestra `MaquinaCafe` que se ponga a trabajar.
 
 ---
 
-¡Y eso es todo! Un proyecto pequeño pero resultón para entender las máquinas de estado. ¡Espero que te guste! 😊
+Y eso es todo, aqui esta explicado el flujo de ejecucion en la maquina de estado, en este caso yo he añadido la clase Cafe, TiposCafe y así como un extra para hacerlo a posteriori,
+si deseo hacer algo más complejo pasar como parametro el cafe y lo que vale
