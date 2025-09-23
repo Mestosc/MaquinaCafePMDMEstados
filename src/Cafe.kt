@@ -4,4 +4,4 @@
  * @property cantidadAzucar la cantidad de azucar del cafe
  * @property tipo el tipo de Cafe
  */
-data class Cafe(var precio: Double, var cantidadAzucar: Int, var tipo: TiposCafe)
+data class Cafe(var precio: Double, var cantidadAzucar: Int, var tipo: TiposCafe, var canitdadIngredientes: Int)
