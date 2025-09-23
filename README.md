@@ -26,7 +26,7 @@ Aquí es donde se definen los posibles estados de nuestra máquina. Usando una `
 -   `fallo`: Algo ha salido mal. 😱
 ### Clases extra
 Para hacer algo más complejo a futuro, si quieres hacer algo más complejo, aqui implemente más cosas, que el estado para hacer pruebas
-más complejas porque me apetecio
+más complejas porque me apetecio, no son estrictamente necesarias para la tarea pero las implemente junto a las otra, para hacer cosas algo más avanzadas
 #### `Cafe.kt` 📝
 
 Una `data class` muy simple que representa un café. Contiene propiedades como:
