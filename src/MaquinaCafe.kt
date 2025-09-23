@@ -1,7 +1,18 @@
+/**
+ * Representacion de una maquina de cafe
+ * @property estadoActual El estado actual de la maquina
+ * @property filtroLimpio Si el filtro esta limpio o no, se ensucia desde el punto de vista de no poder hacer nada cada diez veces usa un valor booleano
+ * @property cafesHechos La cantidad hecha, para revisar el filtro si es 10 o mayor no permite hacer cafes
+ */
 object MaquinaCafe {
     private var estadoActual: EstadosMaquinas = EstadosMaquinas.Idle
     private var filtroLimpio = true
     private var cafesHechos = 0
+
+    /**
+     * Hace, un [cafe] en base al pago reflejado en [monedas] si el pago es suficiente,
+     * lo hace, y ya si es más del necesario te da la vuelta y si es menos de lo necesario ni intenta hacerlo
+     */
     fun hacerCafe(cafe: Cafe, monedas: Double) {
         when (estadoActual) {
             is EstadosMaquinas.Idle -> {
@@ -37,12 +48,17 @@ object MaquinaCafe {
                     filtroLimpio = false
                 }
                 cafesHechos += 1
+                cafe.canitdadIngredientes -= 1
             }
             is EstadosMaquinas.fallo -> {
                 println("Fallo: ${(estadoActual as EstadosMaquinas.fallo).error}")
             }
         }
     }
+
+    /**
+     * Limpia el filtro
+     */
     fun clean() {
         filtroLimpio = true
         estadoActual = EstadosMaquinas.Idle
