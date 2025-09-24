@@ -62,7 +62,6 @@ object MaquinaCafe {
     }
     /**
      * Limpia el filtro, si esta sucio
-     *
      */
     fun clean() {
         filtroLimpio = true
