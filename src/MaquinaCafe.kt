@@ -21,6 +21,7 @@ object MaquinaCafe {
             is EstadosMaquinas.preparandoCafe -> {
                 if (!filtroLimpio) {
                     estadoActual = EstadosMaquinas.fallo("Filtro sucio")
+                    return
                 } else {
                     println("Preparando cafe")
                     Thread.sleep(2000)
