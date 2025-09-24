@@ -16,18 +16,14 @@ object MaquinaCafe {
     fun hacerCafe(cafe: Cafe, monedas: Double) {
         when (estadoActual) {
             is EstadosMaquinas.Idle -> {
-                if (monedas>cafe.precio) {
-                    println("Empezando a preparar cafe")
-                    estadoActual = EstadosMaquinas.preparandoCafe
-                    hacerCafe(cafe, monedas) /* Esta llamada recursiva es necesaria si quieres
-                                            // quieres que actualice solo el estado, al menos en la manera de que */
-                }
+                empezarPreparacionCafe(monedas,cafe)
             }
             is EstadosMaquinas.preparandoCafe -> {
                 if (!filtroLimpio) {
                     estadoActual = EstadosMaquinas.fallo("Filtro sucio")
                 } else {
                     println("Preparando cafe")
+                    Thread.sleep(2000)
                     estadoActual = EstadosMaquinas.sirviendoCafe("catppuccino")
                 }
                 hacerCafe(cafe,monedas)
@@ -51,7 +47,22 @@ object MaquinaCafe {
     }
 
     /**
-     * Limpia el filtro
+     * Esta funcion empieza la preparacion del cafe, pasando como parametro las [monedas] que son el dinero que gastas
+     * y el [cafe] que es lo que quieres preparar
+     */
+    private fun empezarPreparacionCafe(monedas: Double, cafe:Cafe) {
+        if (monedas >= cafe.precio) {
+            println("Empezando a preparar cafe")
+            estadoActual = EstadosMaquinas.preparandoCafe
+            hacerCafe(cafe, monedas) /* Esta llamada recursiva es necesaria si quieres
+                                                            // quieres que actualice solo el estado, al menos en la manera de que */
+        } else {
+            println("No tienes suficiente dinero")
+        }
+    }
+    /**
+     * Limpia el filtro, si esta sucio
+     *
      */
     fun clean() {
         filtroLimpio = true
