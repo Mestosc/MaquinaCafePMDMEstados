@@ -25,7 +25,7 @@ Aquí es donde se definen los posibles estados de nuestra máquina. Usando una `
 -   `sirviendoCafe`: ¡El café está listo y se está sirviendo! ☕
 -   `fallo`: Algo ha salido mal. 😱
 ### Clases extra
-Para hacer algo más complejo a futuro, si quieres hacer algo más complejo, aqui implemente más cosas, que el estado para hacer pruebas
+Para hacer algo más complejo si se quiere(puse a futuro pero ya lo implemente), si quieres hacer algo más complejo, aqui implemente más cosas, que el estado para hacer pruebas
 más complejas porque me apetecio, no son estrictamente necesarias para la tarea pero las implemente junto a las otra, para hacer cosas algo más avanzadas
 #### `Cafe.kt` 📝
 
