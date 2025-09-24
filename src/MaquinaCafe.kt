@@ -24,12 +24,7 @@ object MaquinaCafe {
                 }
             }
             is EstadosMaquinas.preparandoCafe -> {
-                if (cafe.canitdadIngredientes<1 && !filtroLimpio) {
-                    estadoActual = EstadosMaquinas.fallo("No tenemos el material necesario para preparar su producto, y el filtro esta sucio")
-                } else if (cafe.canitdadIngredientes<1) {
-                    estadoActual = EstadosMaquinas.fallo("No tenemos el material necesario para preparar su producto")
-                }
-                else if (!filtroLimpio) {
+                if (!filtroLimpio) {
                     estadoActual = EstadosMaquinas.fallo("Filtro sucio")
                 } else {
                     println("Preparando cafe")
