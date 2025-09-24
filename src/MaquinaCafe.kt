@@ -43,7 +43,6 @@ object MaquinaCafe {
                     filtroLimpio = false
                 }
                 cafesHechos += 1
-                cafe.canitdadIngredientes -= 1
             }
             is EstadosMaquinas.fallo -> {
                 println("Fallo: ${(estadoActual as EstadosMaquinas.fallo).error}")

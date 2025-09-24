@@ -34,7 +34,6 @@ Una `data class` muy simple que representa un café. Contiene propiedades como:
 -   `precio`: ¿Cuánto cuesta? 💰
 -   `cantidadAzucar`: ¿Lo quieres dulce? 🍬
 -   `tipo`: El tipo de café (definido en `TiposCafe`).
--   `canitdadIngredientes`: La cantidad de ingredientes que le quedan al cafe.
 
 #### `TiposCafe.kt` 📋
 
