@@ -61,6 +61,7 @@ object MaquinaCafe {
      */
     fun clean() {
         filtroLimpio = true
+        cafesHechos = 0
         estadoActual = EstadosMaquinas.Idle
     }
 }
