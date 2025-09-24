@@ -2,5 +2,5 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
     val cafe = Cafe(1.23,5, TiposCafe.CHOCOLATE)
-    MaquinaCafe.hacerCafe(cafe,2.0)
+    repeat(11) { MaquinaCafe.hacerCafe(cafe, 2.0) }
 }

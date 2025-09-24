@@ -5,9 +5,9 @@
  * @property cafesHechos La cantidad hecha, para revisar el filtro si es 10 o mayor no permite hacer cafes
  */
 object MaquinaCafe {
-    private var estadoActual: EstadosMaquinas = EstadosMaquinas.Idle
-    private var filtroLimpio = true
-    private var cafesHechos = 0
+    private var estadoActual: EstadosMaquinas = EstadosMaquinas.Idle // La maquina empieza en Idle
+    var filtroLimpio = true // El filtro empieza limpio
+    private var cafesHechos = 0 // Contador para rastrear la cantidad de cafés hechos, para decidir si el filtro ya esta muy sucio
 
     /**
      * Hace, un [cafe] en base al pago reflejado en [monedas] si el pago es suficiente,
@@ -18,31 +18,31 @@ object MaquinaCafe {
             is EstadosMaquinas.Idle -> {
                 empezarPreparacionCafe(monedas,cafe)
             }
-            is EstadosMaquinas.preparandoCafe -> {
+            is EstadosMaquinas.PreparandoCafe -> {
                 if (!filtroLimpio) {
-                    estadoActual = EstadosMaquinas.fallo("Filtro sucio")
-                    return
+                    estadoActual = EstadosMaquinas.Fallo("Filtro sucio") // Si el filtro no esta limpio, falla
+                    hacerCafe(cafe,monedas)
                 } else {
                     println("Preparando cafe")
-                    Thread.sleep(2000)
-                    estadoActual = EstadosMaquinas.sirviendoCafe("catppuccino")
+                    //Thread.sleep(2000)
+                    estadoActual = EstadosMaquinas.SirviendoCafe("catppuccino")
+                    hacerCafe(cafe,monedas)
                 }
-                hacerCafe(cafe,monedas)
             }
-            is EstadosMaquinas.sirviendoCafe -> {
-                println("Sirviendo ${(estadoActual as EstadosMaquinas.sirviendoCafe).marca}")
+            is EstadosMaquinas.SirviendoCafe -> {
+                println("Sirviendo ${(estadoActual as EstadosMaquinas.SirviendoCafe).marca}")
                 println("Cafe servido")
                 estadoActual = EstadosMaquinas.Idle
                 if (monedas>cafe.precio) {
                     println("Le corresponden ${String.format("%.2f",monedas-cafe.precio)}€ de vuelta")
                 }
-                if (cafesHechos>10) {
+                cafesHechos += 1
+                if (cafesHechos>=10) {
                     filtroLimpio = false
                 }
-                cafesHechos += 1
             }
-            is EstadosMaquinas.fallo -> {
-                println("Fallo: ${(estadoActual as EstadosMaquinas.fallo).error}")
+            is EstadosMaquinas.Fallo -> {
+                println("Fallo: ${(estadoActual as EstadosMaquinas.Fallo).error}")
             }
         }
     }
@@ -54,7 +54,7 @@ object MaquinaCafe {
     private fun empezarPreparacionCafe(monedas: Double, cafe:Cafe) {
         if (monedas >= cafe.precio) {
             println("Empezando a preparar cafe")
-            estadoActual = EstadosMaquinas.preparandoCafe
+            estadoActual = EstadosMaquinas.PreparandoCafe
             hacerCafe(cafe, monedas) /* Esta llamada recursiva es necesaria si quieres
                                                             // quieres que actualice solo el estado, al menos en la manera de que */
         } else {
