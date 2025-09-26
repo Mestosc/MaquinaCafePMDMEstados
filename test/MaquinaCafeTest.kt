@@ -27,7 +27,7 @@ class MaquinaCafeTest {
         val output = outContent.toString()
         assertTrue(output.contains("Empezando a preparar cafe"))
         assertTrue(output.contains("Preparando cafe"))
-        assertTrue(output.contains("Sirviendo catppuccino"))
+        assertTrue(output.contains("Sirviendo CAPPUCCINO"))
         assertTrue(output.contains("Cafe servido"))
         assertFalse(output.contains("de vuelta"))
     }
