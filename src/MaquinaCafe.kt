@@ -8,6 +8,9 @@ object MaquinaCafe {
     var estadoActual: EstadosMaquinas = EstadosMaquinas.Idle // La maquina empieza en Idle
     var filtroLimpio = true // El filtro empieza limpio
     var cafesHechos = 0 // Contador para rastrear la cantidad de cafés hechos, para decidir si el filtro ya esta muy sucio
+    /**
+     * Cambia el estado de la maquina a [nuevoEstado] si la transicion es valida, pasando el [cafe] y las [monedas] al nuevo estado
+     */
     fun setState(cafe:Cafe,monedas: Double,nuevoEstado: EstadosMaquinas) {
         if (transicionValida(monedas,cafe,nuevoEstado)) { // El dinero y el cafe no importan en este caso
             estadoActual = nuevoEstado
@@ -16,9 +19,16 @@ object MaquinaCafe {
             println("Transición inválida de $estadoActual a $nuevoEstado")
         }
     }
+    /**
+     * Actualiza el estado de la maquina, pasando el [cafe] y las [monedas] al nuevo estado
+     */
     fun actualizarEstado(cafe: Cafe, monedas: Double) {
         estadoActual.onEnter(cafe,monedas)
     }
+
+    /**
+     * Verifica si la transicion de estados es valida, en base al estado actual, el [nuevoEstado] ya que dependiendo de cuál sea, y él [cafe] y las [monedas] que se pasan
+     */
     fun transicionValida(monedas: Double, cafe: Cafe, nuevoEstado: EstadosMaquinas): Boolean {
         return when (estadoActual) {
             is EstadosMaquinas.Idle -> {
