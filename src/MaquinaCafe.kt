@@ -6,7 +6,7 @@
  */
 object MaquinaCafe {
     private var estadoActual: EstadosMaquinas = EstadosMaquinas.Idle // La maquina empieza en Idle
-    var filtroLimpio = true // El filtro empieza limpio
+    private var filtroLimpio = true // El filtro empieza limpio
     private var cafesHechos = 0 // Contador para rastrear la cantidad de cafés hechos, para decidir si el filtro ya esta muy sucio
 
     /**
@@ -24,8 +24,8 @@ object MaquinaCafe {
                     hacerCafe(cafe,monedas)
                 } else {
                     println("Preparando cafe")
-                    //Thread.sleep(2000)
-                    estadoActual = EstadosMaquinas.SirviendoCafe("catppuccino")
+                    Thread.sleep(2000)
+                    estadoActual = EstadosMaquinas.SirviendoCafe(cafe.tipo.name)
                     hacerCafe(cafe,monedas)
                 }
             }

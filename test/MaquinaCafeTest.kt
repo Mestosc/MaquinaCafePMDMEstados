@@ -58,14 +58,6 @@ class MaquinaCafeTest {
         val output = outContent.toString()
         assertTrue(output.contains("Fallo: Filtro sucio"))
     }
-    @Test
-    fun hacerCafeConFiltroSucioFalla1() {
-        val cafe = Cafe(1.0, 1, TiposCafe.CAPPUCCINO)
-        MaquinaCafe.filtroLimpio = false;
-        MaquinaCafe.hacerCafe(cafe, 1.0)
-        val output = outContent.toString()
-        assertTrue(output.contains("Fallo: Filtro sucio"))
-    }
 
     @Test
     fun limpiarFiltroPermiteHacerCafeDeNuevo() {
