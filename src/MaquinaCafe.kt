@@ -30,7 +30,7 @@ object MaquinaCafe {
             }
             is EstadosMaquinas.PreparandoCafe -> {
                 when (nuevoEstado) {
-                    is EstadosMaquinas.SirviendoCafe -> filtroLimpio
+                    is EstadosMaquinas.SirviendoCafe -> true
                     else -> false
                 }
             }
@@ -50,20 +50,6 @@ object MaquinaCafe {
         estadoActual.onEnter(cafe,monedas)
     }
 
-    /**
-     * Esta funcion empieza la preparacion del cafe, pasando como parametro las [monedas] que son el dinero que gastas
-     * y el [cafe] que es lo que quieres preparar
-     */
-    private fun empezarPreparacionCafe(monedas: Double, cafe:Cafe) {
-        if (monedas >= cafe.precio) {
-            println("Empezando a preparar cafe")
-            estadoActual = EstadosMaquinas.PreparandoCafe
-            hacerCafe(cafe, monedas) /* Esta llamada recursiva es necesaria si quieres
-                                                            // quieres que actualice solo el estado, al menos en la manera de que */
-        } else {
-            println("No tienes suficiente dinero")
-        }
-    }
     /**
      * Limpia el filtro, si esta sucio
      */

@@ -36,6 +36,7 @@ sealed class EstadosMaquinas: EntrarCafe {
                 println("Le corresponden ${String.format("%.2f",monedas-cafe.precio)}€ de vuelta")
             }
             cafesHechos += 1
+            println(cafesHechos)
             if (cafesHechos>=10) {
                 filtroLimpio = false
             }
