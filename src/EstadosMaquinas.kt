@@ -16,8 +16,10 @@ sealed class EstadosMaquinas: EntrarCafe {
             } else {
                 if (monedas<cafe.precio) {
                     println("No tienes suficiente dinero")
+                } else {
+                    MaquinaCafe.setState(cafe,monedas, PreparandoCafe)
                 }
-                MaquinaCafe.setState(cafe,monedas, PreparandoCafe)
+
             }
         }
     }

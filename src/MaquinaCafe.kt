@@ -34,7 +34,9 @@ object MaquinaCafe {
             is EstadosMaquinas.Idle -> {
                 when (nuevoEstado) {
                     is EstadosMaquinas.PreparandoCafe -> monedas>=cafe.precio && filtroLimpio
-                    is EstadosMaquinas.Fallo -> !filtroLimpio
+                    is EstadosMaquinas.Fallo -> !filtroLimpio /* Me he dado cuenta de que
+                    si empezara desde Idle y fuera a preparandoCafe a fallo si el filtro no esta limpio seria conceptualmente más dificil
+                    porque empezaria a hacer el cafe veria que no esta limpio y no lo serviria, y seria extraño así es mejor*/
                     else -> false
                 }
             }
