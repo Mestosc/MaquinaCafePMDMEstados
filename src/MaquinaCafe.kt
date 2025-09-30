@@ -9,7 +9,7 @@ object MaquinaCafe {
     var filtroLimpio = true // El filtro empieza limpio
     var cafesHechos = 0 // Contador para rastrear la cantidad de cafés hechos, para decidir si el filtro ya esta muy sucio
     /**
-     * Cambia el estado de la maquina a [nuevoEstado] si la transicion es valida, pasando el [cafe] y las [monedas] al nuevo estado
+     * Cambia el estado de la maquina a [nuevoEstado] si la transicion es valida, pasando el [cafe] al nuevo estado
      */
     fun setState(cafe:Cafe,nuevoEstado: EstadosMaquinas) {
         if (transicionValida(cafe,nuevoEstado)) { // El dinero y el cafe no importan en este caso
@@ -27,7 +27,7 @@ object MaquinaCafe {
     }
 
     /**
-     * Verifica si la transicion de estados es valida, en base al estado actual, el [nuevoEstado] ya que dependiendo de cuál sea, y él [cafe] y las [monedas] que se pasan
+     * Verifica si la transicion de estados es valida, en base al estado actual, el [nuevoEstado] ya que dependiendo de cuál sea, y él [cafe]
      */
     fun transicionValida(cafe: Cafe, nuevoEstado: EstadosMaquinas): Boolean {
         return when (estadoActual) {
@@ -57,7 +57,7 @@ object MaquinaCafe {
         }
     }
     /**
-     * Hace, un [cafe] en base al pago reflejado en [monedas] si el pago es suficiente,
+     * Hace, un [cafe] en base al pago que haya en [Datos.monedas], si no hay suficiente dinero no
      * lo hace, y ya si es más del necesario te da la vuelta y si es menos de lo necesario ni intenta hacerlo
      */
     fun hacerCafe(cafe: Cafe) {
