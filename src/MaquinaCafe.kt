@@ -62,9 +62,7 @@ object MaquinaCafe {
      */
     fun hacerCafe(cafe: Cafe) {
         estadoActual = EstadosMaquinas.Idle
-        if (EstadosMaquinas.Idle == estadoActual) {
-            estadoActual.onEnter(cafe)
-        }
+        estadoActual.onEnter(cafe)
     }
 
     /**
