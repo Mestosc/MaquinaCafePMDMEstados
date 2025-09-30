@@ -13,7 +13,7 @@ sealed class EstadosMaquinas: EntrarCafe {
         override fun onEnter(cafe: Cafe) {
             if (!filtroLimpio) {
                 MaquinaCafe.setState(cafe, Fallo("Filtro sucio"))
-            } else{
+            } else {
                 if (Datos.monedas<cafe.precio) {
                     println("No tienes suficiente dinero")
                 } else if (Datos.monedas>=cafe.precio) {
@@ -43,7 +43,7 @@ sealed class EstadosMaquinas: EntrarCafe {
             if (cafesHechos>=10) {
                 filtroLimpio = false
             } else {
-                MaquinaCafe.setState(cafe, Idle)
+                estadoActual = Idle
             }
         }
     }
