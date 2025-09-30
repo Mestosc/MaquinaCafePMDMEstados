@@ -43,7 +43,7 @@ sealed class EstadosMaquinas: EntrarCafe {
             if (cafesHechos>=10) {
                 filtroLimpio = false
             } else {
-                estadoActual = Idle
+                MaquinaCafe.setState(cafe, Idle)
             }
         }
     }

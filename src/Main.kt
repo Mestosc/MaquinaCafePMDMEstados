@@ -1,6 +1,7 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
+    while (true) {
     println("---- Bienvenido a la maquina de cafe ----")
     println("Digame el tipo de cafe que desea: ")
     val cafes = mapOf<String, Cafe>(
@@ -9,8 +10,12 @@ fun main() {
         "Descafeinado" to Cafe(1.00, 1, TiposCafe.DESCAFEINADO)
     )
     cafes.forEach { (nombre, cafe) -> println("$nombre: ${cafe.precio}€") }
-    print("Dime tu eleccion de cafe: ")
+    print("Dime tu eleccion de cafe (escribe salir para detener programa): ")
     var tipoCafe = readlnOrNull()?.trim() ?: ""
+    if (tipoCafe.equals("salir", ignoreCase = true)) {
+        println("Saliendo del programa...")
+        return
+    }
     tipoCafe = (tipoCafe.take(1).uppercase() + tipoCafe.substring(1).lowercase())
     val cafe = cafes[tipoCafe] ?: Cafe(0.0, 0, TiposCafe.DESCAFEINADO)
     if (cafe.precio == 0.0) {
@@ -24,4 +29,5 @@ fun main() {
     val monedas = monedasInput.toDoubleOrNull() ?: 0.0
     Datos.monedas = monedas
     MaquinaCafe.hacerCafe(cafe)
+    }
 }
