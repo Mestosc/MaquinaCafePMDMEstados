@@ -23,7 +23,8 @@ class MaquinaCafeTest {
     @Test
     fun hacerCafeConDineroExactoSirveCafeYNoDaVuelta() {
         val cafe = Cafe(1.5, 2, TiposCafe.CAPPUCCINO)
-        MaquinaCafe.hacerCafe(cafe, 1.5)
+        Datos.monedas = 1.5
+        MaquinaCafe.hacerCafe(cafe)
         val output = outContent.toString()
         assertTrue(output.contains("Empezando a preparar cafe"))
         assertTrue(output.contains("Preparando cafe"))
@@ -35,7 +36,8 @@ class MaquinaCafeTest {
     @Test
     fun hacerCafeConDineroSuficienteDaVuelta() {
         val cafe = Cafe(1.0, 1, TiposCafe.DESCAFEINADO)
-        MaquinaCafe.hacerCafe(cafe, 2.0)
+        Datos.monedas = 2.0
+        MaquinaCafe.hacerCafe(cafe)
         val output = outContent.toString()
         assertTrue(output.contains("Le corresponden 1,00€ de vuelta") || output.contains("Le corresponden 1.00€ de vuelta"))
     }
@@ -43,7 +45,8 @@ class MaquinaCafeTest {
     @Test
     fun hacerCafeConDineroInsuficienteNoPrepara() {
         val cafe = Cafe(2.0, 1, TiposCafe.CHOCOLATE)
-        MaquinaCafe.hacerCafe(cafe, 1.0)
+        Datos.monedas = 1.0
+        MaquinaCafe.hacerCafe(cafe)
         val output = outContent.toString()
         assertTrue(output.contains("No tienes suficiente dinero"))
         assertFalse(output.contains("Preparando cafe"))
@@ -52,9 +55,13 @@ class MaquinaCafeTest {
     @Test
     fun hacerCafeConFiltroSucioFalla() {
         val cafe = Cafe(1.0, 1, TiposCafe.CAPPUCCINO)
-        repeat(10) { MaquinaCafe.hacerCafe(cafe, 1.0) }
+        repeat(10) {
+            Datos.monedas = 23.12
+            MaquinaCafe.hacerCafe(cafe)
+        }
         outContent.reset()
-        MaquinaCafe.hacerCafe(cafe, 1.0)
+        Datos.monedas = 12.2
+        MaquinaCafe.hacerCafe(cafe)
         val output = outContent.toString()
         assertTrue(output.contains("Fallo: Filtro sucio"))
     }
@@ -62,10 +69,12 @@ class MaquinaCafeTest {
     @Test
     fun limpiarFiltroPermiteHacerCafeDeNuevo() {
         val cafe = Cafe(1.0, 1, TiposCafe.CAPPUCCINO)
-        repeat(11) { MaquinaCafe.hacerCafe(cafe, 1.0) }
+        repeat(11) { Datos.monedas = 1.0
+            MaquinaCafe.hacerCafe(cafe) }
         MaquinaCafe.clean()
         outContent.reset()
-        MaquinaCafe.hacerCafe(cafe, 1.0)
+        Datos.monedas = 1.0
+        MaquinaCafe.hacerCafe(cafe)
         val output = outContent.toString()
         assertTrue(output.contains("Empezando a preparar cafe"))
         assertTrue(output.contains("Cafe servido"))

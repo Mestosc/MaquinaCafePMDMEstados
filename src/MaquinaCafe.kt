@@ -11,29 +11,29 @@ object MaquinaCafe {
     /**
      * Cambia el estado de la maquina a [nuevoEstado] si la transicion es valida, pasando el [cafe] y las [monedas] al nuevo estado
      */
-    fun setState(cafe:Cafe,monedas: Double,nuevoEstado: EstadosMaquinas) {
-        if (transicionValida(monedas,cafe,nuevoEstado)) { // El dinero y el cafe no importan en este caso
+    fun setState(cafe:Cafe,nuevoEstado: EstadosMaquinas) {
+        if (transicionValida(cafe,nuevoEstado)) { // El dinero y el cafe no importan en este caso
             estadoActual = nuevoEstado
-            actualizarEstado(cafe,monedas)
+            actualizarEstado(cafe)
         } else {
             println("Transición inválida de $estadoActual a $nuevoEstado")
         }
     }
     /**
-     * Actualiza el estado de la maquina, pasando el [cafe] y las [monedas] al nuevo estado
+     * Actualiza el estado de la maquina, pasando el [cafe]
      */
-    fun actualizarEstado(cafe: Cafe, monedas: Double) {
-        estadoActual.onEnter(cafe,monedas)
+    fun actualizarEstado(cafe: Cafe) {
+        estadoActual.onEnter(cafe)
     }
 
     /**
      * Verifica si la transicion de estados es valida, en base al estado actual, el [nuevoEstado] ya que dependiendo de cuál sea, y él [cafe] y las [monedas] que se pasan
      */
-    fun transicionValida(monedas: Double, cafe: Cafe, nuevoEstado: EstadosMaquinas): Boolean {
+    fun transicionValida(cafe: Cafe, nuevoEstado: EstadosMaquinas): Boolean {
         return when (estadoActual) {
             is EstadosMaquinas.Idle -> {
                 when (nuevoEstado) {
-                    is EstadosMaquinas.PreparandoCafe -> monedas>=cafe.precio && filtroLimpio
+                    is EstadosMaquinas.PreparandoCafe -> Datos.monedas>=cafe.precio && filtroLimpio
                     is EstadosMaquinas.Fallo -> !filtroLimpio /* Me he dado cuenta de que
                     si empezara desde Idle y fuera a preparandoCafe a fallo si el filtro no esta limpio seria conceptualmente más dificil
                     porque empezaria a hacer el cafe veria que no esta limpio y no lo serviria, y seria extraño así es mejor*/
@@ -51,15 +51,20 @@ object MaquinaCafe {
                     is EstadosMaquinas.Idle -> true
                     else -> false
                 }}
-            else -> false
+            is EstadosMaquinas.Fallo -> {
+                false // Desde fallo no se puede ir a ningun otro estado
+            }
         }
     }
     /**
      * Hace, un [cafe] en base al pago reflejado en [monedas] si el pago es suficiente,
      * lo hace, y ya si es más del necesario te da la vuelta y si es menos de lo necesario ni intenta hacerlo
      */
-    fun hacerCafe(cafe: Cafe, monedas: Double) {
-        estadoActual.onEnter(cafe,monedas)
+    fun hacerCafe(cafe: Cafe) {
+        estadoActual = EstadosMaquinas.Idle
+        if (EstadosMaquinas.Idle == estadoActual) {
+            estadoActual.onEnter(cafe)
+        }
     }
 
     /**
