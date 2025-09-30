@@ -69,8 +69,10 @@ class MaquinaCafeTest {
     @Test
     fun limpiarFiltroPermiteHacerCafeDeNuevo() {
         val cafe = Cafe(1.0, 1, TiposCafe.CAPPUCCINO)
-        repeat(11) { Datos.monedas = 1.0
-            MaquinaCafe.hacerCafe(cafe) }
+        repeat(11) {
+            Datos.monedas = 1.0
+            MaquinaCafe.hacerCafe(cafe)
+        }
         MaquinaCafe.clean()
         outContent.reset()
         Datos.monedas = 1.0
