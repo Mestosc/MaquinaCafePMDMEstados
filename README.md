@@ -52,3 +52,16 @@ Un `enum` que define los tipos de café que nuestra máquina puede preparar. Por
 - El método principal para interactuar es `hacerCafe`, que gestiona el flujo completo de preparación.
 
 Y eso es todo, aquí está explicado el flujo de ejecución en la máquina de estado. Ahora la lógica es más robusta y realista, permitiendo simular fallos y el mantenimiento del filtro de forma sencilla y clara. Si quieres hacer algo más complejo, puedes modificar los estados o añadir nuevos tipos de café fácilmente. ☕🚦🤖
+## 📊 Diagrama de Estado
+Aqui se puede ver una muestra de mi diagrama de estado
+```mermaid
+stateDiagram
+[*] --> Idle
+
+    Idle --> PreparandoCafe : monedas suficientes
+    Idle --> Fallo : filtro sucio
+
+    PreparandoCafe --> SirviendoCafe : preparacion completa
+
+    SirviendoCafe --> Idle
+```
