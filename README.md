@@ -53,7 +53,7 @@ Un `enum` que define los tipos de café que nuestra máquina puede preparar. Por
 
 Y eso es todo, aquí está explicado el flujo de ejecución en la máquina de estado. Ahora la lógica es más robusta y realista, permitiendo simular fallos y el mantenimiento del filtro de forma sencilla y clara. Si quieres hacer algo más complejo, puedes modificar los estados o añadir nuevos tipos de café fácilmente. ☕🚦🤖
 ## 📊 Diagrama de Estado
-Aqui se puede ver una muestra de mi diagrama de estado
+Aqui se puede ver una muestra de mi diagrama de estado, ya lo tenia hecho en clase tanto el diagrama de estado como el codigo así que aproveche a digitalizarlo
 ```mermaid
 stateDiagram
 [*] --> Idle
