@@ -30,6 +30,11 @@ sealed class EstadosMaquinas: EntrarCafe {
             MaquinaCafe.setState(cafe, SirviendoCafe(cafe.tipo.name))
         }
     }
+
+    /**
+     * Estado de servir el cafe
+     * @property marca La marca del cafe que se esta sirviendo
+     */
     data class SirviendoCafe(val marca: String) : EstadosMaquinas() {
         override fun onEnter(cafe: Cafe) {
             println("Sirviendo ${(estadoActual as SirviendoCafe).marca}")
@@ -46,6 +51,11 @@ sealed class EstadosMaquinas: EntrarCafe {
             }
         }
     }
+
+    /**
+     * Estado de fallo, con un mensaje de error
+     * @property error: El mensaje de error
+     */
     data class Fallo(val error: String) : EstadosMaquinas() {
         override fun onEnter(cafe: Cafe) {
             println("Fallo: $error")
