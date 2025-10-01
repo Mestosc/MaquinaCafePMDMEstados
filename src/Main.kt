@@ -3,9 +3,7 @@
 fun main() {
 //    repeat(12) {
 //        Datos.monedas = 12.34
-//        if (it==10) {
-//            MaquinaCafe.clean()
-//        }
+//        println("Haciendo cafe numero $it")
 //        MaquinaCafe.hacerCafe(Cafe(1.0, 1, TiposCafe.CAPPUCCINO))
  //   } // Ahora si funciona si hago el cafe 12 veces me dice dos veces la parte del fallo
     menu()
@@ -14,7 +12,7 @@ fun menu() {
     while (true) {
         println("---- Bienvenido a la maquina de cafe ----")
         println("Digame el tipo de cafe que desea: ")
-        val cafes = mapOf<String, Cafe>(
+        val cafes = mapOf(
             "Chocolate" to Cafe(1.23, 5, TiposCafe.CHOCOLATE),
             "Cappuccino" to Cafe(1.50, 2, TiposCafe.CAPPUCCINO),
             "Descafeinado" to Cafe(1.00, 1, TiposCafe.DESCAFEINADO)

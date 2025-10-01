@@ -39,7 +39,6 @@ sealed class EstadosMaquinas: EntrarCafe {
             }
             cafesHechos += 1
             Datos.monedas = 0.0
-            println(cafesHechos)
             if (cafesHechos>=10) {
                 filtroLimpio = false
             } else {
