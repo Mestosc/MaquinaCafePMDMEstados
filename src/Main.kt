@@ -1,12 +1,12 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-//    repeat(12) {
-//        Datos.monedas = 12.34
-//        println("Haciendo cafe numero $it")
-//        MaquinaCafe.hacerCafe(Cafe(1.0, 1, TiposCafe.CAPPUCCINO))
- //   } // Ahora si funciona si hago el cafe 12 veces me dice dos veces la parte del fallo
-    menu()
+    repeat(12) {
+        Datos.monedas = 12.34
+        println("Haciendo cafe numero ${it+1}")
+        MaquinaCafe.hacerCafe(Cafe(1.0, 1, TiposCafe.CAPPUCCINO))
+    } // Ahora si funciona si hago el cafe 12 veces me dice dos veces la parte del fallo
+    //menu()
 }
 fun menu() {
     while (true) {
